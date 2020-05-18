@@ -1,0 +1,56 @@
+@mixin make-row($column-gap: $grid-column-gap, $row-gap: $grid-row-gap, $columns: $grid-columns, $margin-x: $container-padding-x) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  column-gap: $column-gap;
+  row-gap: $row-gap;
+  margin-left: -$margin-x;
+  margin-right: -$margin-x;
+}
+
+@mixin make-row-justify($value) {
+  justify-items: $value;
+}
+
+@mixin make-row-align($value) {
+  align-items: $value;
+}
+
+@mixin make-justify($value) {
+  justify-content: $value;
+}
+
+@mixin make-align($value) {
+  align-content: $value;
+}
+
+@mixin make-row-justify-items($values: $align-items) {
+  @each $key, $value in $values {
+    .justify-items__#{$key} {
+      @include make-row-justify($value);
+    }
+  }
+}
+
+@mixin make-row-align-items($values: $align-items) {
+  @each $key, $value in $values {
+    .align-items__#{$key} {
+      @include make-row-align($value);
+    }
+  }
+}
+
+@mixin make-row-justify-content($values: $align-content) {
+  @each $key, $value in $values {
+    .justify-content__#{$key} {
+      @include make-justify($value);
+    }
+  }
+}
+
+@mixin make-row-align-content($values: $align-content) {
+  @each $key, $value in $values {
+    .align-content__#{$key} {
+      @include make-align($value);
+    }
+  }
+}

@@ -1,0 +1,43 @@
+@mixin make-col($columns) {
+  grid-column: span $columns;
+}
+
+@mixin make-grid-columns($columns: $grid-columns, $breakepoints: $grid-breakpoints) {
+  @each $breakepoint in map-keys($breakepoints) {
+    $infix: breakpoint-infix($breakepoint, $breakepoints);
+
+    @include media-breakpoint-up($breakepoint, $breakepoints) {
+      @if $columns > 0 {
+        @for $i from 1 through $columns {
+          .col#{$infix}-#{$i} {
+            @include make-col($i);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin make-item-align($align) {
+  align-self: $align;
+}
+
+@mixin make-item-justify($justify) {
+  justify-self: $justify;
+}
+
+@mixin make-items-align($aligns: $align-items) {
+  @each $key, $value in $aligns {
+    .item-align__#{$key} {
+      @include make-item-align($value);
+    }
+  }
+}
+
+@mixin make-items-justify($aligns: $align-items) {
+  @each $key, $value in $aligns {
+    .item-justify__#{$key} {
+      @include make-item-justify($value);
+    }
+  }
+}

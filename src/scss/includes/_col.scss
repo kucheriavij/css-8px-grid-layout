@@ -1,0 +1,7 @@
+.col {
+  grid-column: span 12;
+}
+
+@include make-grid-columns();
+@include make-items-align();
+@include make-items-justify();
